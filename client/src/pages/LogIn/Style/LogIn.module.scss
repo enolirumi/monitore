@@ -1,0 +1,11 @@
+.main {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  min-height: 100vh;
+}
+
+@media (max-width: 1072px) {
+  .main {
+    grid-template-columns: 100%;
+  }
+}
