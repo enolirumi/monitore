@@ -9,15 +9,15 @@ const User = database.define('usuario', {
         primaryKey: true
     },
     nome: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(2000),
         allowNull: false
     },
     sobrenome: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(2000),
         allowNull: false
     },
     email: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(2000),
         allowNull: false
     },
     senha: {

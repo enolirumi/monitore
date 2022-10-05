@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import styles from "./Style/Register.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
+import LoadingModal from "../../components/LoadingModal/LoadingModal";
+import { useEffect } from "react";
+import { cryptObject, cryptText, decryptObject, decryptText } from "../../Criptografia/Criptografia";
 
 const Register = () => {
   const navigate = useNavigate()
 
-  const base_url = 'http://localhost:8080'
+  const base_url = import.meta.env.VITE_DBHOST
 
   const API = axios.create({
     headers: {
@@ -17,37 +20,56 @@ const Register = () => {
   const [nome, setNome] = useState(``)
   const [email, setEmail] = useState(``)
   const [sobrenome, setSobrenome] = useState(``)
+  const [genero, setGenero] = useState('')
   const [senha, setSenha] = useState(``)
+  const [nascimento, setNascimento] = useState(new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate() + "T" + new Date().getHours() + ":" + new Date().getMinutes())
   const [confSenha, setConfSenha] = useState(``)
 
+  const [isLoading, setIsLoading] = useState(false)
   const [msgError, setMsgError] = useState(``)
+
+  useEffect(() => {
+    console.log(nascimento);
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
 
-    if(nome == '', email == '', sobrenome == '', senha == '', confSenha == '') {
+    if (nome == '' || email == '' || sobrenome == '' || senha == '' || confSenha == '' || genero == '') {
+      setIsLoading(false)
       return setMsgError(`Todos os campos devem estar preenchidos`)
     }
 
-    if(sobrenome.indexOf(` `) !== -1) {
+    if (sobrenome.indexOf(` `) !== -1) {
+      setIsLoading(false)
       return setMsgError(`Preencha com apenas um sobrenome`)
     }
- 
-    if(senha !== confSenha) {
+
+    if (senha !== confSenha) {
+      setIsLoading(false)
       return setMsgError(`Confirmação de senha não é igual a senha`)
     }
 
-    const registro = await API.post(`${base_url}/register`, {
-      nome: nome,
-      sobrenome: sobrenome,
-      senha: confSenha,
-      email: email
-    }).then((res) => {
-      console.log(res)
-      return res
-    })
+    try {
+      const registro = await API.post(`${base_url}/register`, {
+        "cryptedBody": cryptObject({
+          "nome": nome,
+          "sobrenome": sobrenome,
+          "senha": confSenha,
+          "email": email,
+          "sexo": genero
+        })
+      }).then((res) => {
+        console.log(res)
+        return res
+      })
+      navigate(`/`)
+    } catch (err) {
+      setIsLoading(false)
+      return setMsgError(err.response.data.msgError)
+    } 
 
-    navigate(`/`)
   }
 
   return (
@@ -64,7 +86,7 @@ const Register = () => {
               className={styles["name"]}
               placeholder="Nome" value={nome}
               onChange={(e) => { setNome(e.target.value) }}
-              onFocus={(e) => {setMsgError(``)}}
+              onFocus={(e) => { setMsgError(``) }}
             />
 
             <input
@@ -74,7 +96,7 @@ const Register = () => {
               min={'0'}
               value={sobrenome}
               onChange={(e) => { setSobrenome(e.target.value) }}
-              onFocus={(e) => {setMsgError(``)}}
+              onFocus={(e) => { setMsgError(``) }}
             />
 
             <input
@@ -83,24 +105,34 @@ const Register = () => {
               placeholder="E-mail"
               value={email}
               onChange={(e) => { setEmail(e.target.value) }}
-              onFocus={(e) => {setMsgError(``)}}
+              onFocus={(e) => { setMsgError(``) }}
             />
 
             <div className={styles["select-custom"]}>
-              <select>
+              <select value={genero} onChange={(e) => setGenero(e.target.value)}>
                 <option value="">Gênero</option>
                 <option value="M">Masculino</option>
                 <option value="F">Feminino</option>
-                <option value="A">Outro</option>
+                <option value="O">Outro</option>
               </select>
             </div>
+
+            {/* <input
+              type="datetime-local"
+              className={styles["senha"]}
+              value={nascimento}
+              max={new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate() + "T" + new Date().getHours() + ":" + new Date().getMinutes()}
+              onChange={(e) => { setNascimento(e.target.value); console.log(nascimento); console.log(new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate() + "T" + new Date().getHours() + ":" + new Date().getMinutes()); }}
+              onFocus={(e) => {setMsgError(``)}}
+            /> */}
+
             <input
               type="password"
               className={styles["senha"]}
               placeholder="Senha"
               value={senha}
-              onChange={(e) => { setSenha(e.target.value), setMsgError(``) }}
-              onFocus={(e) => {setMsgError(``)}}
+              onChange={(e) => { setSenha(e.target.value) }}
+              onFocus={(e) => { setMsgError(``) }}
             />
 
             <input
@@ -109,7 +141,7 @@ const Register = () => {
               placeholder="Confirme sua Senha"
               value={confSenha}
               onChange={(e) => { setConfSenha(e.target.value) }}
-              onFocus={(e) => {setMsgError(``)}}
+              onFocus={(e) => { setMsgError(``) }}
             />
           </div>
           <div className={styles["terms"]}>
@@ -128,6 +160,7 @@ const Register = () => {
           </div>
         </form>
       </div>
+      <LoadingModal isLoading={isLoading} />
     </div>
   );
 };

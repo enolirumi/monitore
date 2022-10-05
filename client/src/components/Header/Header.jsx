@@ -10,11 +10,32 @@ const Header = () => {
         navigate('/')
     }
 
+    function renderLogin() {
+        
+    }
+
     return (
         <header className={``}>
-            <h1>Monitore</h1>
-            <h3>Olá, <span>{localStorage.getItem('Nome')}</span></h3>
-            <a onClick={() => { logout() }}>Sair</a>
+            <h1 onClick={() => navigate(`/home`)}>Monitore</h1>
+            <nav>
+                <ul>
+                    <a onClick={() => navigate('/home')}><li>Início</li></a>
+                    <a ><li>aaaaaa</li></a>
+                    <a onClick={() => navigate('/alimentos')}><li>Buscar Alimentos</li></a>
+                </ul>
+            </nav>
+            {localStorage.length > 0 &&
+                <div>
+                    <h3>Olá, <span>{localStorage.getItem('Nome')}</span></h3>
+                    <a className={styles['btn-sair']} onClick={() => { logout() }}>Sair</a>
+                </div>
+            }
+            {localStorage.length == 0 &&
+                <div className='container-login-register-btn'>
+                    <div>Logar</div>
+                    <div>Registrar</div>
+                </div>
+            }
         </header>
     )
 }

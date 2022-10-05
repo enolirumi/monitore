@@ -5,5 +5,41 @@ header {
     top: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    padding: 0 4vw;
+    justify-content: space-between;
+
+    h1 {
+        cursor: pointer;
+    }
+
+    nav {
+        width: 350px;
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            width: 100%;
+
+            li {
+                cursor: pointer;
+                margin: 0 10px;
+                transition: all .3s ease;
+
+                &:hover {
+                    color: aquamarine;
+                }
+            }
+        }
+    }
+
+    .btn-sair {
+        cursor: pointer;
+        color: red;
+        transition: all 0.5s ease;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }

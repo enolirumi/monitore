@@ -1,11 +1,17 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
 import express from 'express';
 import session from 'express-session';
 import flash from 'connect-flash';
 import cors from 'cors';
 import { Sequelize } from 'sequelize';
+import fs from 'fs'
+import bcrypt from 'bcrypt'
 
 import User from './models/User';
 import database from './db';
+import { cryptObject, cryptText, decryptObject, decryptText } from './Criptografia/Criptografia';
+// import { buscaAlimento } from './Controllers/Alimentos'
 
 const app = express();
 const port = 8080
@@ -25,21 +31,17 @@ app.use((req, res, next) => {
     next();
 })
 
-const testaNull = () => {
-    
-}
-
 app.post(`/login`, async (req, res) => {
 
     const { email } = req.body;
     const { senha } = req.body;
 
-    console.log(`a`)
-
     let testaNull = false
-    Object.keys(req.body).forEach((i) => {if(req.body[i] == '' || req.body[i] == undefined || req.body[i] == null) {
-        testaNull = true
-    }})
+    Object.keys(req.body).forEach((i) => {
+        if (req.body[i] == '' || req.body[i] == undefined || req.body[i] == null) {
+            testaNull = true
+        }
+    })
     if (testaNull) {
         return res.status(400).json()
     }
@@ -54,11 +56,13 @@ app.post(`/login`, async (req, res) => {
     })
 
     if (user[0] == undefined | null) {
-        res.status(500)
+        res.status(500).json()
     }
 
-    if(user[0].dataValues.senha !== senha) {
-        return res.status(403).json()
+    if (await bcrypt.compare(senha, user[0].dataValues.senha).then(function(result) {
+        return result
+    })) {
+        return res.status(403).json({ msgError: 'Usuário ou senha incorretos' })
     }
 
     req.session.nome = user[0].dataValues.nome;
@@ -67,9 +71,7 @@ app.post(`/login`, async (req, res) => {
     req.session.senha = senha;
     req.session.nvAcesso = user[0].dataValues.nvAcesso
 
-    console.log(req.session)
-
-    res.status(200).json(JSON.stringify({ 
+    res.status(200).json(JSON.stringify({
         'msg': 'Usuario logado',
         'sessionNome': req.session.nome,
         'sessionSobrenome': req.session.sobrenome,
@@ -83,39 +85,91 @@ app.post(`/register`, async (req, res) => {
     const date = new Date();
     const current_time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
 
-    const { nome } = req.body
-    const { sobrenome } = req.body
-    const { email } = req.body
-    const { senha } = req.body
-    const { sexo } = req.body
-    const { nascimento } = req.body
+    if(!req.body.cryptedBody || typeof req.body.cryptedBody != 'string') {
+        return res.status(400).json({msgError: "Ocorreu um erro no cadastro, tente novamente mais tarde"})
+    }
 
-    console.log(req.body)
+    const trueBody = decryptObject(req.body.cryptedBody)
+
+    const { nome } = trueBody
+    const { sobrenome } = trueBody
+    const { email } = trueBody
+    const { senha } = trueBody
+    const { sexo } = trueBody
+    const { nascimento } = trueBody
+
+    console.log(trueBody)
 
     let testaNull = false
-    Object.keys(req.body).forEach((i) => {if(req.body[i] == '' || req.body[i] == undefined || req.body[i] == null) {
-        testaNull = true
-    }})
+    Object.keys(trueBody).forEach((i) => {
+        if (trueBody[i] == '' || trueBody[i] == undefined || trueBody[i] == null) {
+            testaNull = true
+        }
+    })
 
     if (testaNull) {
+        return res.status(400).json({msgError: "Preencha todos os campos"})
+    }
+
+    const user = await database.sync().then(async () => {
+        const user = await User.findAll({
+            where: {
+                email: email
+            }
+        })
+        return user
+    })
+
+    if(user.length > 0) {
+        return res.status(400).json({msgError: "Este e-mail já está sendo utilizado"})
+    }
+
+    try {
+        const newUser = await database.sync().then(async () => {
+            const newUser = await User.create({
+                'nome': nome,
+                'sobrenome': sobrenome,
+                'email': email,
+                'senha': await bcrypt.hash(senha, 10).then(function(hash) {
+                    return hash
+                }),
+                'sexo': sexo
+            })
+            return newUser
+        })
+        return res.status(200).json(JSON.stringify({ "msg": `Usuário cadastrado com sucesso` }))
+
+    } catch (err) {
+        return res.status(500).json(JSON.stringify({ "msgError": `Erro ao cadastrar. Tente novamente mais tarde` }))
+    }
+
+})
+
+app.get('/alimento/:nameAlimento', async (req, res) => {
+    const { nameAlimento } = req.params
+
+    if (nameAlimento == '' || nameAlimento == undefined || nameAlimento == null) {
         return res.status(400).json()
     }
 
-    const newUser = await database.sync().then(async () => {
-        const newUser = await User.create({
-            'nome': nome,
-            'sobrenome': sobrenome,
-            'email': email,
-            'senha': senha,
-        })
-        return newUser
+    const listaAlimentosJSON = fs.readFileSync('./AlimentosData/AlimentosLista.json', 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).json({ msg: err })
+        }
+        return data
     })
 
-    if (typeof newUser.dataValues.id != 'number') {
-        return res.status(500)
-    }
+    const listaAlimentos = JSON.parse(listaAlimentosJSON)
 
-    return res.status(200).json(JSON.stringify({ "msg": `Usuário cadastrado com sucesso` }))
+    const resultado = listaAlimentos.filter(e => {
+        if (e.description.toLowerCase().replace(/, /g, ` `).includes(nameAlimento.toLowerCase())) {
+            return e
+        }
+    });
+
+    return res.status(200).json(JSON.stringify(resultado))
+
+
 })
 
 app.listen(port, () => {

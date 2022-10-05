@@ -1,0 +1,108 @@
+body {
+    min-height: 100vh;
+
+    .section-pesquisa {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5vh;
+
+        .div-pesquisa {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: black 1px solid;
+            padding: 5px;
+            border-radius: 10px;
+
+            input {
+                width: 95%;
+                height: 100%;
+                border: none;
+                outline: none;
+                font-size: 1.2rem;
+            }
+
+            button {
+                width: 5%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 30px;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+            }
+        }
+
+        .div-resultados {
+            width: 50%;
+            max-height: 200px;
+            overflow-y: scroll;
+            z-index: 5;
+
+            .card-alimento {
+                width: 100%;
+                margin: 5px 0;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: blue;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .section-alimentoInfo {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .cardInfo-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 101;
+            background-color: rgb(78, 78, 78, 0.3);
+        }
+
+        .cardInfo {
+            width: 70vw;
+            height: 70vh;
+            position: fixed;
+            z-index: 102;
+            padding: calc(2vh + 60px) 5vh 5vh 5vh;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            border-radius: 20px;
+
+            .btn-close {
+                position: absolute;
+                right: 2vh;
+                top: 2vh;
+                font-size: 40px;
+                cursor: pointer;
+                transition: all .5s ease;
+
+                &:hover {
+                    color: red;
+                }
+            }
+
+            ul {
+                list-style: none;
+            }
+
+            li {
+                margin-top: 7px;
+            }
+        }
+    }
+}
