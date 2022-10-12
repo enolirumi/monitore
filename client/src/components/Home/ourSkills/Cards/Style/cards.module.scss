@@ -1,0 +1,72 @@
+@mixin alignCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin cardAboutUs($color, $boxShadowColor) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #ffffffeb;
+  border-radius:  0 30px 0 30px;
+  border: 2px solid $color;
+  width: 19rem;
+  height: 25rem;
+  transition: all 0.4s;
+  overflow: hidden;
+  margin: 1rem 0;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0px 20px $boxShadowColor;
+  }
+  .icon-part {
+    width: 100%;
+    height: 40%;
+    @include alignCenter;
+    margin-top: 0.5rem;
+    .icon-ball {
+      padding: 1.5rem;
+      border: 2px solid $color;
+      border-radius: 50%;
+      @include alignCenter;
+      img {
+        width: 6.25rem;
+        height: 5.65rem;
+      }
+    }
+  }
+  .text-part {
+    width: 100%;
+    height: 60%;
+    .title {
+      color: #474747;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-align: center;
+      height: 10%;
+      margin-top: 0.8rem;
+    }
+    .text-about {
+      color: #8a909b;
+      height: 90%;
+      padding: 1rem;
+      line-height: 1.4;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+.card-glicemia {
+  @include cardAboutUs(#40bfbc, #65b3b0bd);
+}
+.card-alimentos {
+  @include cardAboutUs(#f27457, #dd7a63cc);
+}
+.card-carboidratos {
+  @include cardAboutUs(#fae056, #dabf3bc2);
+}
+.card-idk {
+  @include cardAboutUs(#4a92d0, #567fa3cc);
+}
