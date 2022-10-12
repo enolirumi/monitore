@@ -1,0 +1,17 @@
+.about-container {
+  padding: 5rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(243, 241, 241);
+  gap: 2rem;
+  .title {
+    background: rgb(82, 73, 73);
+  }
+  .img-part {
+    background: rgb(255, 0, 0);
+  }
+  .text-part {
+    background: rgb(255, 125, 125);
+  }
+}

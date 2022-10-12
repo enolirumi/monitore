@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import styles from './Styles/Header.module.scss'
+import ImgLogo from "../../assets/imgLogo.svg"
 
 const Header = () => {
 
@@ -16,7 +17,7 @@ const Header = () => {
 
     return (
         <header className={``}>
-            <h1 onClick={() => navigate(`/home`)}>Monitore</h1>
+            <img src={ImgLogo} alt="" onClick={() => navigate(`/home`)}/>
             <nav>
                 <ul>
                     <a onClick={() => navigate('/home')}><li>Início</li></a>
