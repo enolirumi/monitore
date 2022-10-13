@@ -50,9 +50,9 @@ const Alimentos = () => {
             <section className={`${styles['section-pesquisa']}`}>
                 <form className={`${styles['div-pesquisa']}`}>
                     <input type="text" value={pesquisa} onChange={(e) => { pesquisar(e); }} onFocus={() => setIsSeaching(true)} placeholder="Insira o nome do alimento" />
-                    <button type="submit">
+                    {/* <button type="submit">
                         <AiOutlineSearch />
-                    </button>
+                    </button> */}
                 </form>
                 <div className={`${styles['div-resultados']}`}>
                     {resultados.map((e) => {
@@ -71,7 +71,7 @@ const Alimentos = () => {
                         <div className={`${styles['cardInfo']}`}>
                             <div className={styles[`btn-close`]} onClick={() => setInfo({})}><AiOutlineClose /></div>
                             <ul>
-                                <li>Alimento: <span>{info.description.replace(/, /g, ` `)}</span></li>
+                                <li className={styles["title-food"]}><span>{info.description.replace(/, /g, ` `)}</span></li>
                                 <li>Quantidade: <span>{info.base_qty}</span> <span>{info.base_unit}</span></li>
                                 <li>Valor energético: <span>{typeof info.attributes.energy.kcal == 'number' ? info.attributes.energy.kcal.toFixed(2).replace(`.`, `,`) : info.attributes.energy.kcal} kcal</span> ou <span>{typeof info.attributes.energy.kj == 'number' ? info.attributes.energy.kj.toFixed(2).replace(`.`, `,`) : info.attributes.energy.kj} kj</span></li>
                                 <li>Proteínas: <span>{typeof info.attributes.protein.qty == 'number' ? info.attributes.protein.qty.toFixed(2).replace(`.`, `,`) : info.attributes.protein.qty}</span> <span>{info.attributes.protein.unit}</span></li>

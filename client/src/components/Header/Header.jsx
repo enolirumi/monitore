@@ -21,7 +21,6 @@ const Header = () => {
             <nav>
                 <ul>
                     <a onClick={() => navigate('/home')}><li>Início</li></a>
-                    <a ><li>aaaaaa</li></a>
                     <a onClick={() => navigate('/alimentos')}><li>Buscar Alimentos</li></a>
                 </ul>
             </nav>
