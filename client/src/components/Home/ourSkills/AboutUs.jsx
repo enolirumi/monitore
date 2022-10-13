@@ -32,6 +32,10 @@ export default function AboutUs() {
 
   return (
     <section className={styles["container-about-us"]}>
+      <div className={styles["title"]}>
+         <h2>O que proporcionamos?</h2>
+      </div>
+      <div className={styles["cards"]}>
       {dataAboutUs.map((e) => {
         return(
             <>
@@ -39,6 +43,7 @@ export default function AboutUs() {
             </>
         )
       })}
+      </div>
     </section>
   );
 }
