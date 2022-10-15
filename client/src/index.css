@@ -8,3 +8,16 @@ body{
   font-family: "Montserrat", sans-serif;
   min-height: 101vh;
 }
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: #40bfbc;
+}

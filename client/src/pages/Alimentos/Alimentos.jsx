@@ -1,11 +1,9 @@
 import { useState } from "react"
-import { AiOutlineSearch, AiOutlineClose } from 'react-icons/ai'
+import { AiOutlineClose } from 'react-icons/ai'
 import styles from "./Style/Alimentos.module.scss"
 import axios from "axios"
-import process from 'dotenv'
 import Header from '../../components/Header/Header'
 import LoadingModal from '../../components/LoadingModal/LoadingModal'
-import { useEffect } from "react"
 
 const Alimentos = () => {
 
@@ -48,6 +46,9 @@ const Alimentos = () => {
         <>
             <Header />
             <section className={`${styles['section-pesquisa']}`}>
+                <div className={styles["title"]}>
+                    <h2>Pesquise os alimentos aqui:</h2>
+                </div>
                 <form className={`${styles['div-pesquisa']}`}>
                     <input type="text" value={pesquisa} onChange={(e) => { pesquisar(e); }} onFocus={() => setIsSeaching(true)} placeholder="Insira o nome do alimento" />
                     {/* <button type="submit">
@@ -72,14 +73,18 @@ const Alimentos = () => {
                             <div className={styles[`btn-close`]} onClick={() => setInfo({})}><AiOutlineClose /></div>
                             <ul>
                                 <li className={styles["title-food"]}><span>{info.description.replace(/, /g, ` `)}</span></li>
-                                <li>Quantidade: <span>{info.base_qty}</span> <span>{info.base_unit}</span></li>
+                               <div className={styles["table"]}>
+                               <div className={styles["column-01"]}>
+                               <li>Quantidade: <span>{info.base_qty}</span> <span>{info.base_unit}</span></li>
                                 <li>Valor energético: <span>{typeof info.attributes.energy.kcal == 'number' ? info.attributes.energy.kcal.toFixed(2).replace(`.`, `,`) : info.attributes.energy.kcal} kcal</span> ou <span>{typeof info.attributes.energy.kj == 'number' ? info.attributes.energy.kj.toFixed(2).replace(`.`, `,`) : info.attributes.energy.kj} kj</span></li>
                                 <li>Proteínas: <span>{typeof info.attributes.protein.qty == 'number' ? info.attributes.protein.qty.toFixed(2).replace(`.`, `,`) : info.attributes.protein.qty}</span> <span>{info.attributes.protein.unit}</span></li>
                                 <li>Carboidratos: <span>{typeof info.attributes.carbohydrate.qty == 'number' ? info.attributes.carbohydrate.qty.toFixed(2).replace(`.`, `,`) : info.attributes.carbohydrate.qty}</span> <span>{info.attributes.carbohydrate.unit}</span></li>
                                 <li>Lipídios: <span>{typeof info.attributes.lipid.qty == 'number' ? info.attributes.lipid.qty.toFixed(2).replace(`.`, `,`) : info.attributes.lipid.qty}</span> <span>{info.attributes.lipid.unit}</span></li>
                                 <li>Colesterol: <span>{typeof info.attributes.cholesterol.qty == 'number' ? info.attributes.cholesterol.qty.toFixed(2).replace(`.`, `,`) : info.attributes.cholesterol.qty}</span> <span>{info.attributes.cholesterol.unit}</span></li>
                                 <li>Sódio: <span>{typeof info.attributes.sodium.qty == 'number' ? info.attributes.sodium.qty.toFixed(2).replace(`.`, `,`) : info.attributes.sodium.qty}</span> <span>{info.attributes.cholesterol.unit}</span></li>
-                                <li>Fibras: <span>{typeof info.attributes.fiber.qty == 'number' ? info.attributes.fiber.qty.toFixed(2).replace(`.`, `,`) : info.attributes.fiber.qty}</span> <span>{info.attributes.cholesterol.unit}</span></li>
+                               <li>Fibras: <span>{typeof info.attributes.fiber.qty == 'number' ? info.attributes.fiber.qty.toFixed(2).replace(`.`, `,`) : info.attributes.fiber.qty}</span> <span>{info.attributes.cholesterol.unit}</span></li>
+                               </div>
+                               <div className={styles["column-02"]}>
                                 <li>Cálcio: <span>{typeof info.attributes.calcium.qty == 'number' ? info.attributes.calcium.qty.toFixed(2).replace(`.`, `,`) : info.attributes.calcium.qty}</span> <span>{info.attributes.cholesterol.unit}</span></li>
                                 <li>Magnésio: <span>{typeof info.attributes.magnesium.qty == 'number' ? info.attributes.magnesium.qty.toFixed(2).replace(`.`, `,`) : info.attributes.magnesium.qty}</span> <span>{info.attributes.cholesterol.unit}</span></li>
                                 <li>Fósforo: <span>{typeof info.attributes.phosphorus.qty == 'number' ? info.attributes.phosphorus.qty.toFixed(2).replace(`.`, `,`) : info.attributes.phosphorus.qty}</span> <span>{info.attributes.cholesterol.unit}</span></li>
@@ -87,6 +92,8 @@ const Alimentos = () => {
                                 <li>Potássio: <span>{typeof info.attributes.potassium.qty == 'number' ? info.attributes.potassium.qty.toFixed(2).replace(`.`, `,`) : info.attributes.potassium.qty}</span> <span>{info.attributes.cholesterol.unit}</span></li>
                                 <li>Cobre: <span>{typeof info.attributes.copper.qty == 'number' ? info.attributes.copper.qty.toFixed(2).replace(`.`, `,`) : info.attributes.copper.qty}</span> <span>{info.attributes.cholesterol.unit}</span></li>
                                 <li>Zinco: <span>{typeof info.attributes.zinc.qty == 'number' ? info.attributes.zinc.qty.toFixed(2).replace(`.`, `,`) : info.attributes.zinc.qty}</span> <span>{info.attributes.cholesterol.unit}</span></li>
+                               </div>
+                               </div>
                             </ul>
                         </div>
                         <div className={`${styles['cardInfo-bg']}`} onClick={() => setInfo({})}></div>

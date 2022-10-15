@@ -1,3 +1,5 @@
+
+
 header {
   position: fixed;
   top: 0;
@@ -33,13 +35,22 @@ header {
         cursor: pointer;
         margin: 0 10px;
         transition: all 0.3s ease;
+        font-weight: 500;
 
         &:hover {
-          color: rgb(64, 75, 71);
+          color: #40bfbc;
         }
       }
     }
   }
+  // .btn-profile{
+  //   background: red;
+  //   position: relative;
+  // }
+  // .modal{
+  //   position: absolute;
+  //   background: blue;
+  // }
 
   .btn-sair {
     cursor: pointer;

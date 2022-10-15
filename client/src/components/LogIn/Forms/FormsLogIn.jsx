@@ -3,6 +3,7 @@ import styles from "./Style/FormsLogIn.module.scss";
 import { Link } from "react-router-dom";
 import LoadingModal from "../../LoadingModal/LoadingModal";
 import { useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const FormsLogIn = ({
   senha,
@@ -58,7 +59,7 @@ const FormsLogIn = ({
               className={styles["visible"]}
               onClick={() => setPasswordIsVisible((prevState) => !prevState)}
             >
-               {passwordIsVisible ? "Olho" :  "Aberto"}
+               {passwordIsVisible ? <AiOutlineEye id={styles["eye"]}/> :  <AiOutlineEyeInvisible id={styles["eye"]}/>}
               
             </div>
            </div>
