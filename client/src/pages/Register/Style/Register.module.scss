@@ -1,3 +1,4 @@
+@import "../../../fonts.scss";
 @keyframes appear{
     0%{
       opacity: 0;
@@ -63,7 +64,7 @@
         border-bottom: 2px solid black;
         color: black;
         transition: all 0.4s;
-        font-family: "Montserrat";
+        font-family: Montserrat-regular;
 
         &:focus {
           outline: none;
@@ -91,7 +92,7 @@
         font-size: 1rem;
         border-bottom: 2px solid #000;
         background: #9adddb;
-        font-family: "Montserrat";
+        font-family: Montserrat-regular;
       }
     }
     .terms {
@@ -147,7 +148,7 @@
       flex-direction: column;
       margin-top: 2rem;
       .btn-forms {
-        font-family: "Montserrat";
+        font-family: Montserrat-regular;
         cursor: pointer;
         width: 10rem;
         height: 3.2rem;

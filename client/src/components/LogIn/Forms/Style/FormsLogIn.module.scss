@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import "../../../../fonts.scss";
 
 @mixin input {
   &:focus {
@@ -89,7 +90,7 @@
           border-bottom: 2px solid black;
           color: black;
           transition: all 0.4s;
-          font-family: "Montserrat", sans-serif;
+          font-family: Montserrat-regular;
           display: flex;
           input {
             height: 100%;
@@ -97,7 +98,7 @@
             padding: 0.8rem;
             width: 100%;
             background: transparent;
-            font-family: "Montserrat", sans-serif;
+            font-family: Montserrat-regular;
             border: none;
             @include input;
           }
@@ -123,7 +124,7 @@
           border-bottom: 2px solid black;
           color: black;
           transition: all 0.4s;
-          font-family: "Montserrat", sans-serif;
+          font-family: Montserrat-regular;
           @include input;
         }
       }
@@ -135,7 +136,7 @@
         margin-top: 40px;
 
         .btn-forms {
-          font-family: "Montserrat", sans-serif;
+          font-family: Montserrat-regular;
           cursor: pointer;
           width: 10rem;
           height: 3.2rem;
