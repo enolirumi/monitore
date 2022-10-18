@@ -28,7 +28,7 @@ const LogIn = () => {
 
     useEffect(() => {
         if (localStorage.length > 0) {
-            navigate(`/home`)
+            navigate(`/`)
         }
     }, [])
 
@@ -57,7 +57,7 @@ const LogIn = () => {
             localStorage.setItem('Senha', data.sessionSenha)
             localStorage.setItem('nvAcesso', data.sessionnvAcesso)
 
-            navigate(`/home`)
+            navigate(`/`)
         } catch (err) {
             setLoading(false)
             return setMsgError(err.response.data.msgError)

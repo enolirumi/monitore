@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './Styles/Header.module.scss'
 import ImgLogo from "../../assets/imgLogo.svg"
 import {useState} from 'react'
@@ -11,6 +11,7 @@ const Header = () => {
     function logout() {
         localStorage.clear();
         navigate('/')
+        setLogged(false)
     }
 
     function renderLogin() {
@@ -32,10 +33,13 @@ const Header = () => {
 
     return (
         <header className={``}>
-            <img src={ImgLogo} alt="" onClick={() => navigate(`/home`)}/>
+            <div className={styles["img"]}>
+            <img src={ImgLogo} alt="" onClick={() => navigate(`/`)}/>
+
+            </div>
             <nav>
                 <ul>
-                    <a onClick={() => navigate('/home')}><li>Início</li></a>
+                    <a onClick={() => navigate('/')}><li>Início</li></a>
                     <a onClick={() => navigate('/alimentos')}><li>Buscar Alimentos</li></a>
                 </ul>
             </nav>
@@ -50,9 +54,9 @@ const Header = () => {
                 </div>
             }
             {localStorage.length == 0 &&
-                <div className='container-login-register-btn'>
-                    <div>Logar</div>
-                    <div>Registrar</div>
+                <div className={styles['container-login-register-btn']}>
+                    <Link to='/login' className={styles['btn-unlogged']} >Logar</Link>
+                    <Link to='/cadastro' className={styles['btn-unlogged']}>Cadastrar</Link>
                 </div>
             }
         </header>
