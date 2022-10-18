@@ -31,7 +31,7 @@ export default function AboutUs() {
   ];
 
   return (
-    <section className={styles["container-about-us"]}>
+    <section className={styles["container-our-skills"]}>
       <div className={styles["title"]}>
          <h2>O que proporcionamos?</h2>
       </div>
