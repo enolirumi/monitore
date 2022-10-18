@@ -30,7 +30,7 @@
   position: relative;
   z-index: 1;
   margin-top: 13vh;
-  height: 100vh;
+  height: 100vh; 
   background-image: linear-gradient(
       to right top,
       rgba(73, 73, 73, 0.56),
@@ -52,7 +52,7 @@
     text-align: center;
     padding: 1rem;
     .primary-text {
-      font-size: 60px;
+      font-size: 4rem;
       letter-spacing: 15px;
       animation-name: moveLeft;
       animation-duration: 2.5s;
@@ -62,9 +62,88 @@
     .second-text {
       display: block;
       letter-spacing: 8px;
-      font-size: 25px;
+      font-size: 1.5rem;
       margin-top: 0.8rem;
       animation: moveRigth 2.5s;
+    }
+  }
+}
+
+@media (max-width: 600px){
+  .div-img {
+    .text-box {
+      .primary-text {
+        font-size: 3.5rem;
+      }
+      .second-text {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 520px){
+  .div-img {
+    .text-box {
+      .primary-text {
+        font-size: 3rem;
+      }
+      .second-text {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 470px){
+  .div-img {
+    .text-box {
+      padding: 0.2rem;
+      .primary-text {
+        font-size: 2.5rem;
+      }
+      .second-text {
+        letter-spacing: 6px;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px){
+  .div-img {
+    .text-box {
+      .primary-text {
+        font-size: 2.2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 380px){
+  .div-img {
+    .text-box {
+      .primary-text {
+        font-size: 2rem;
+      }
+      .second-text {
+        letter-spacing: 5px;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 350px){
+  .div-img {
+    .text-box {
+      .primary-text {
+        font-size: 1.7rem;
+      }
+      .second-text {
+        letter-spacing: 4px;
+        font-size: 1rem;
+      }
     }
   }
 }

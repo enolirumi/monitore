@@ -1,4 +1,4 @@
-.container-about-us {
+.container-our-skills {
   padding: 5rem 4rem;
   background: #F9F9F9;
   display: flex;
@@ -9,6 +9,7 @@
     color: #474747;
     font-size: 2rem;
     margin-bottom: 3rem;
+    text-align: center;
   }
   .cards {
     width: 100%;
@@ -18,5 +19,31 @@
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 1090px){
+  .container-our-skills {
+    .title {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+@media (max-width: 450px){
+  .container-our-skills {
+    padding: 5rem 2rem;
+    .title {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 400px){
+  .container-our-skills {
+    padding: 5rem 1rem;
+    .title {
+      font-size: 1.3rem;
+    }
   }
 }
