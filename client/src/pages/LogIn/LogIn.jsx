@@ -42,10 +42,10 @@ const LogIn = () => {
         }
 
         try {
-            const login = await API.post(`${base_url}/login`, {
+            const login = await API.post(`${base_url}/login`, { cryptedObject: cryptObject({
                 email: email,
                 senha: senha
-            }).then((res) => {
+            }) }).then((res) => {
                 return res
             })
 
