@@ -33,15 +33,22 @@ app.use((req, res, next) => {
 
 app.post(`/login`, async (req, res) => {
 
-    const { email } = req.body;
-    const { senha } = req.body;
+    const { cryptedObject } = req.body;
+
+    const trueBody = decryptObject(cryptedObject)
+
+    const { email } = trueBody
+    const { senha } = trueBody
+
+    console.log(trueBody)
 
     let testaNull = false
-    Object.keys(req.body).forEach((i) => {
-        if (req.body[i] == '' || req.body[i] == undefined || req.body[i] == null) {
+    Object.keys(trueBody).forEach((i) => {
+        if (trueBody[i] == '' || trueBody[i] == undefined || trueBody[i] == null) {
             testaNull = true
         }
     })
+
     if (testaNull) {
         return res.status(400).json()
     }
