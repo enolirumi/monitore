@@ -32,7 +32,7 @@ export default function AboutUs() {
 
   return (
     <section className={styles["container-our-skills"]}>
-      <div className={styles["title"]}>
+      <div className={`${styles["title"]} under-title`}>
          <h2>O que proporcionamos?</h2>
       </div>
       <div className={styles["cards"]}>

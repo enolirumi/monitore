@@ -2,3 +2,19 @@
     color: currentColor;
     text-decoration: none;
  }
+ 
+ .under-title {
+   position: relative;
+ }
+
+ .under-title::after {
+   content: '';
+   position: absolute;
+   height: 2px;
+   width: 50%;
+   background-color: #4A92D0;
+   bottom: -15px;
+   left: 50%;
+   transform: translateX(-50%);
+   max-width: 200px;
+ }

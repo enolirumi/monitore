@@ -17,15 +17,15 @@
     img {
         animation: subir 0.8s;
         width: 50rem;
-        height: 60vh;
+        height: 32rem;
+
       }
   }
 
   @media(max-width: 1400px){
     .img-container {
         img {
-            width: 45rem;
-            height: 62vh;
+            width: 43rem;
           }
     }
   }
@@ -33,7 +33,6 @@
     .img-container {
         img {
             width: 40rem;
-            height: 51vh;
           }
     }
   }
