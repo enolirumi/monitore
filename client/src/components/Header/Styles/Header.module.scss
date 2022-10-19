@@ -70,7 +70,6 @@ header {
       font-weight: 600;
       transition: all 0.4s;
       &:hover {
-        transform: scale(1.05);
         background: #40bfbc;
         color: rgb(255, 255, 255);
       }
@@ -83,6 +82,9 @@ header {
           background: white;
         }
       }
+      &:active{
+        transform: scale(0.95);
+      }
     }
   }
   .modal {
@@ -90,6 +92,11 @@ header {
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    h3{
+      span{
+        text-transform: capitalize;
+      }
+    }
     .btn-sair {
       cursor: pointer;
       color: rgb(73, 73, 73);

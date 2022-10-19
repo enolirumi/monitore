@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "./Style/BannerLogIn.module.scss"
-import imgBanner from "../../../assets/img-login.png"
+import imgBanner from "../../../assets/20944859.jpg"
 
 const BannerLogIn = () => {
     return (

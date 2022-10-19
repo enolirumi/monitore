@@ -1,14 +1,31 @@
 @import "../../../fonts.scss";
 @keyframes appear{
     0%{
-      opacity: 0;
+      opacity: 0.5;
     }
     100%{
       opacity: 1;
     }
   }
+
+  @mixin input {
+    &:focus {
+      outline: none;
+    }
+  
+    &::placeholder {
+      color: black;
+      opacity: 1;
+    }
+  
+    &:focus::placeholder {
+      transition: all 0.4s;
+      font-size: 0.9rem;
+    }
+  }
+  
 .body {
-  background-image: url("../../../assets/fundo.png");
+  background-image: linear-gradient( to right top, rgba(0, 0, 0, 0.37), rgba(0, 0, 0, 0.37)), url("../../../assets/image.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -21,9 +38,9 @@
 .wrapper {
   margin: 2rem 0;
   border-radius: 2.5rem;
-  max-width: 450px;
+  max-width: 480px;
   width: 100%;
-  background: #9adddb;
+  background: #aadef3;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.125);
   padding: 3rem 3rem 3.8rem 3rem;
   animation: appear 1s;
@@ -56,6 +73,37 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      .senha {
+        background: rgb(255, 255, 255);
+        border: none;
+        background-color: transparent;
+        border-bottom: 2px solid black;
+        color: black;
+        transition: all 0.4s;
+        font-family: Montserrat-regular;
+        display: flex;
+        input {
+          height: 100%;
+          font-size: 1rem;
+          padding: 0.8rem;
+          width: 100%;
+          background: transparent;
+          font-family: Montserrat-regular;
+          border: none;
+          @include input;
+        }
+        .visible{
+          width: 3rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          #eye{
+            width: 1.6rem;
+            height: 1.4rem;
+          }
+        }
+      }
       input {
         padding: 0.8rem;
         font-size: 1rem;
@@ -91,7 +139,7 @@
         padding: 8px 10px;
         font-size: 1rem;
         border-bottom: 2px solid #000;
-        background: #9adddb;
+        background: #aadef3;
         font-family: Montserrat-regular;
       }
     }
@@ -161,11 +209,11 @@
 
         &:hover {
           box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.63);
-          transform: translateY(-4px);
+          transform: translateY(-2px);
         }
 
         &:active {
-          transform: translateY(2px);
+          transform: translateY(1px);
         }
       }
       p {
