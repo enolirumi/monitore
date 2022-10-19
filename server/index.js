@@ -4,13 +4,11 @@ import express from 'express';
 import session from 'express-session';
 import flash from 'connect-flash';
 import cors from 'cors';
-import { Sequelize } from 'sequelize';
 import fs from 'fs'
 import bcrypt from 'bcrypt'
-
 import User from './models/User';
 import database from './db';
-import { cryptObject, cryptText, decryptObject, decryptText } from './Criptografia/Criptografia';
+import { decryptObject } from './Criptografia/Criptografia';
 // import { buscaAlimento } from './Controllers/Alimentos'
 
 const app = express();
