@@ -12,21 +12,21 @@ export default function AboutUs() {
       img: ControleGlicemia,
       title: "Controle de Glicemia",
       about:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. ",
+        "Registre a glicemia sempre que quiser em sua própria agenda. É possível ainda especificar o horário da medição, a refeição consumida e quantidade de medicação usada para a correção da glicemia.",
     },
     {
         class: "card-alimentos",
         img: PesquisaAlimentos,
         title: "Pesquisa de Alimentos",
         about:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. ",
+          "Procurando facilitar a correção da glicemia para aqueles que realizam dieta e/ou controle de carboidratos, uma uma tabela foi montada com informações nutricionais dos alimentos. ",
       },
       {
         class: "card-carboidratos",
         img: ControleCarboidratos,
         title: "Contagem de Carboidratos",
         about:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. ",
+          "A Contagem de Carboidratos é baseada na proposta da alimentação saudável, na qual devem ser utilizados todos os grupos de alimentos, fornece noções básicas sobre os alimentos.",
       },
   ];
 

@@ -10,24 +10,23 @@ export default function AboutUs() {
       <div className={styles["content"]}>
         <div className={styles["img-part"]}>
           {/* <img src={ImgquemSomos} alt="" /> */}
-          <div className={styles["img"]}>
-
-          </div>
+          <div className={styles["img"]}></div>
         </div>
         <div className={styles["text-part"]}>
-         <div className={styles["part1"]}>
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-         </div>
+          <div className={styles["part1"]}>
+            A MONITORE é um aplicativo dedicado as pessoas que fazem controle
+            glicêmico. Nele, é possível registrar sua glicemia junto ao horário
+            que a medição foi realizada. Além disso, você possui acesso a uma
+            tabela de alimentos para facilitar na hora de corrigir sua glicemia.
+          </div>
 
-        <div className={styles["part2"]}>
-        Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </div>
+          <div className={styles["part2"]}>
+            Os elementos estão dispostos de forma que a interface é limpa e as
+            funções são fáceis de identificar. Além disso, as fontes foram
+            selecionadas pensando na legibilidade para os usuários com
+            dificuldades de visão, assim como as cores foram escolhidas
+            visandono conforto do usuário.
+          </div>
         </div>
       </div>
     </div>

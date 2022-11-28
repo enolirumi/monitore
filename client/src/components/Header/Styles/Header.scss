@@ -191,7 +191,7 @@
   position: fixed;
   top: 0;
   z-index: 99;
-  background-color: rgb(255, 255, 255, 0.97);
+  background-color: rgb(255, 255, 255, 0.976);
   height: 13vh;
   width: 100%;
   transition: all 0.3s;
@@ -203,11 +203,15 @@
 .brand-name {
   text-decoration: none;
   width: 33%;
+  display: block;
   img {
     max-height: 12vh;
     cursor: pointer;
   }
   @media screen and (max-width: 768px) {
+    position: absolute;
+    top: -13vh;
+    left: 5px;
   }
 }
 .navigation-menu {
@@ -237,7 +241,11 @@
   display: block;
   width: 33%;
   @media screen and (max-width: 768px) {
+    
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 .navigation-menu li {
