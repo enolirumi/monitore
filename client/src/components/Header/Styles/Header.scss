@@ -131,7 +131,8 @@
 .container-login-register-btn {
   display: flex;
   grid-column: 3/4;
-  gap: 1rem;
+    width: 33%;
+    gap: 1rem;
   justify-content: flex-end;
   .btn-unlogged {
     border-radius: 8px;
@@ -167,6 +168,7 @@
   width: 30%;
   display: flex;
   flex-direction: column;
+  align-items: end;
   h3 {
     span {
       text-transform: capitalize;
@@ -176,7 +178,9 @@
     cursor: pointer;
     color: rgb(73, 73, 73);
     transition: all 0.5s ease;
-
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
     &:hover {
       text-decoration: underline;
     }
@@ -192,22 +196,22 @@
   width: 100%;
   transition: all 0.3s;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 0 4vw;
 }
 
 .brand-name {
   text-decoration: none;
-  margin-left: 1rem;
-  width: 20%;
+  width: 33%;
   img {
     max-height: 12vh;
     cursor: pointer;
   }
+  @media screen and (max-width: 768px) {
+  }
 }
 .navigation-menu {
-  width: 80%;
+  width: 90%;
   display: flex;
   align-items: center;
 }
@@ -221,20 +225,27 @@
 }
 .links {
   display: flex;
-  align-items: center;
-  margin-left: 14rem;
-  @media screen and (max-width: 900px) {
-  margin-left: 6rem;
-    
+  align-items: center;    
+  justify-content: center;
+  width: 33%;
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 }
 .navigation-menu a {
   text-decoration: none;
   display: block;
-  width: 100%;
+  width: 33%;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 }
 .navigation-menu li {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
 }
 
 .hamburger {
