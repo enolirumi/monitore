@@ -65,7 +65,7 @@ const Header = () => {
       >
       
         <ul>
-        <a href="/" className="brand-name">
+        <a href="/" className= { isNavExpanded ? "brand-name expanded" : "brand-name" }>
           <img src={ImgLogo} alt="" onClick={() => navigate(`/`)} />
         </a>
           <div className="links">
